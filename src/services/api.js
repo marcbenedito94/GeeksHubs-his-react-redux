@@ -4,6 +4,20 @@ const users = localStorage.getItem( 'users' ) || [ {
     name: 'Juan',
     password: '1234',
     uid:'1'
+},
+{
+    role: 'doctor',
+    username: 'mabepo',
+    name: 'Marc',
+    password: '123',
+    uid:'2'
+},
+{
+    role: 'doctor',
+    username: 'notoca',
+    name: 'Noemi',
+    password: '12345',
+    uid:'3'
 } ];
 
 

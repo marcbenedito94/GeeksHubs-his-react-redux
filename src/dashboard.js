@@ -43,15 +43,11 @@ class dashboard extends React.Component {
 
       return (
         <section className="dashboard">
-          <h1> Dashboard</h1>
-
-          <h3>
-            Tu role es: {role}{" "}
-            {this.props.auth && <button onClick={this.logout}>Logout</button>}
+          <h3 className="btnLogout">
+            {<button onClick={this.logout}>Logout</button>}
           </h3>
-          <h5>
-            {this.props.auth ? name + " is logged in." : "no user is logged in"}
-          </h5>
+
+          <h1>Dashboard</h1>          
 
          {
            links.map(

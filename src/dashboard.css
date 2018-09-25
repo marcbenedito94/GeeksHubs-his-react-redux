@@ -1,3 +1,11 @@
+.dashboard {
+    text-align: center;
+}
+
+.btnLogout {
+    float: right;
+}
+
 .dashboard a {
     display: block;
 }
