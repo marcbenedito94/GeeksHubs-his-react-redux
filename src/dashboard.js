@@ -15,7 +15,7 @@ class dashboard extends React.Component {
 
       const links = [
         {
-          to: "/patientsList",
+          to: "/patients",
           text: "Patients list",
           roles: ["admin", "doctor"]
         },

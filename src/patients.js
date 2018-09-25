@@ -4,7 +4,7 @@ import { Redirect, Link } from "react-router-dom";
 import "./histories.css";
 import "./dashboard.css"
 
-class histories extends React.Component {
+class patients extends React.Component {
   logout = () => {
     this.props.logoutStore();
   };
@@ -47,13 +47,11 @@ class histories extends React.Component {
                 id: "01",
                 patient: "Marc",
                 dni: "73656577D",
-                history: "Dolor de cabeza"
             },
             {
                 id: "02",
-                patient: "Marc",
-                dni: "73656577D",
-                history: "Corte en la pierna"
+                patient: "Joan",
+                dni: "73656577F",
             }
         ];
 
@@ -70,10 +68,9 @@ class histories extends React.Component {
                 item => (
                 <div className="divHistories">
                     
-                    <h4>Registro {item.id}</h4>
+                    <h4>Paciente {item.id}</h4>
                     <h4>{item.patient}</h4>
                     <h4>{item.dni}</h4>
-                    <h4>{item.history}</h4>
                 </div>
                 )
             )
@@ -98,8 +95,8 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const Histories = connect(
+const Patients = connect(
   mapStateToProps,
   mapDispatchToProps
-)(histories);
-export default Histories;
+)(patients);
+export default Patients;
