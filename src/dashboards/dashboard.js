@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import "./dashboard.css";
+import api from '../services/api';
 
 class dashboard extends React.Component {
   logout = () => {
@@ -16,12 +17,17 @@ class dashboard extends React.Component {
       const links = [
         {
           to: "/patients",
-          text: "Patients list",
+          text: "Patients List",
           roles: ["admin", "doctor"]
         },
         {
           to: "/histories",
-          text: "Histories list",
+          text: "Histories List",
+          roles: ["admin", "doctor"]
+        },
+        {
+          to: "/createHistory",
+          text: "Create History",
           roles: ["admin", "doctor"]
         },
         {
@@ -30,16 +36,16 @@ class dashboard extends React.Component {
           roles: ["admin", "technical"]
         },
         {
-          to: "/patientDetail/"+ uid ,
-          text: "Patients detail",
+          to: "/patientDetails/"+ uid ,
+          text: "Patient Details",
           roles: ["admin", "patient"]
         },
         {
-          to: "/historyDetail/" + uid,
-          text: "History detail",
+          to: "/historyDetails/" + uid,
+          text: "History Details",
           roles: ["admin", "patient"]
         }
-      ];
+        ];
 
       return (
         <section className="dashboard">
@@ -52,9 +58,12 @@ class dashboard extends React.Component {
          {
            links.map(
              item => (
+              
               item.roles.includes(role) 
               && 
-              <Link to={item.to}>{item.text}</Link>
+              <div>
+                <Link to={item.to}>{item.text}</Link>
+              </div>
              )
            )
          }
