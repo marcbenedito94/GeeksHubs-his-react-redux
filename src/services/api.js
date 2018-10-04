@@ -1,4 +1,4 @@
-const users = localStorage.getItem( 'users' ) || [ {
+const users = JSON.parse(localStorage.getItem( 'users' )) || [ {
     role: 'doctor',
     username: 'jupegarnica',
     name: 'Juan',
@@ -29,8 +29,8 @@ const users = localStorage.getItem( 'users' ) || [ {
 
 
 
-const histories = localStorage.getItem('histories') || [ {
-}];
+const histories =JSON.parse( localStorage.getItem('histories')) || [];
+console.log('histories', histories)
 
 const api = {
     login(username, password) {
@@ -38,21 +38,25 @@ const api = {
     },
     createUser(user){
        users.push(user);
-       localStorage.setItem('users', users);
+       localStorage.setItem('users', JSON.stringify(users));
     },
     getUser() {
         
     },
     createHistory(history) {
         histories.push(history);
-        localStorage.setItem('histories', histories);
+        localStorage.setItem('histories', JSON.stringify(histories));
     },
     getHistories() {
-        //return histories.filter(item => item.name === 'patient');
+        return histories;
     },
     getPatients() {
         return users.filter(item => item.role === 'patient')
-        console.log(users);
+     
+    },
+    getHistory(id) {
+        return histories.filter(item => item.uid === id)
+       
     }
 }
 

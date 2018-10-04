@@ -48,7 +48,7 @@ class historyDetails extends React.Component {
             </h3>
 
             <h1>Details of {name}</h1>
-            <h4>{this.props.}</h4>
+            <h4>{}</h4>
             <h4>{username}</h4>
         </section>
       );

@@ -14,7 +14,8 @@ class histories extends React.Component {
         numberRegistry: '',
         namePatient: '',
         dniPatient: '',
-        history: ''
+        history: '',
+        uid:''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -29,8 +30,8 @@ class histories extends React.Component {
   handleSubmit(event) {
     console.log('A history was submitted: ' + this.state.dniPatient);
     event.preventDefault();
-    let {numberRegistry, namePatient, dniPatient ,history} = this.state
-    api.createHistory({numberRegistry, namePatient, dniPatient, history});
+    let {numberRegistry, namePatient, dniPatient ,history, uid} = this.state
+    api.createHistory({numberRegistry, namePatient, dniPatient, history, uid});
     //api.getHistory();
     console.log({numberRegistry, namePatient, dniPatient, history});
   }
@@ -54,6 +55,9 @@ class histories extends React.Component {
           <h1>Create History</h1>
 
           <form onSubmit={this.handleSubmit}>
+          <label>uid:
+          <input type="text" name="uid" value={this.state.uid} onChange={this.handleChange} />
+          </label>
           <label>Number of Registry:
           <input type="text" name="numberRegistry" value={this.state.numberRegistry} onChange={this.handleChange} />
           </label>

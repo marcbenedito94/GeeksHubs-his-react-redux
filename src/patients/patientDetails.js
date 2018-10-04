@@ -56,15 +56,11 @@ class patientDetails extends React.Component {
             <button onClick={this.logout}>Logout</button>
         </h3>
 
-        <h1>Details of {name}</h1>
-
-        {
-          
-        }
+        <h1>Details of {api.getPatients}</h1>
 
         {
           <div>
-            <h4>Role: {role}</h4>
+            <h4>Role: {this.patients}</h4>
             <h4>Username: {username}</h4>
             <h4>Name: {name}</h4>
           </div>
