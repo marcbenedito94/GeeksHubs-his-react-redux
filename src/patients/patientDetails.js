@@ -56,14 +56,15 @@ class patientDetails extends React.Component {
             <button onClick={this.logout}>Logout</button>
         </h3>
 
-        <h1>Details of {api.getPatients}</h1>
-
         {
-          <div>
-            <h4>Role: {this.patients}</h4>
-            <h4>Username: {username}</h4>
-            <h4>Name: {name}</h4>
-          </div>
+          this.props.patients.map(item => (
+            <div key={item.uid}>
+              <h1>Details of {item.name}</h1>
+              <h4>User ID: {item.uid}</h4>
+              <h4>Role: {item.role}</h4>
+              <h4>Username: {item.username}</h4>
+            </div>
+          ))
         }
        
         </section>
