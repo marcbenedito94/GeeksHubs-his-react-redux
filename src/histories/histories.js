@@ -96,7 +96,7 @@ class histories extends React.Component {
           
         this.props.histories.map(item => (
             <div key={item.numberRegistry}>
-              { <Link to={'/historyDetails/'+item.numberRegistry}>{item.numberRegistry}</Link> }
+              { <Link to={'/historyDetails/'+item.numberRegistry}>{item.namePatient}</Link> }
               <br/>
             </div>
           ))

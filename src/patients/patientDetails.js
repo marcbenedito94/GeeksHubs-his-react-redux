@@ -33,6 +33,11 @@ class patientDetails extends React.Component {
         roles: ["admin", "doctor"]
       },
       {
+        to: "/createHistory",
+        text: "Create History",
+        roles: ["admin", "doctor"]
+      },
+      {
         to: "/createUser",
         text: "Create User",
         roles: ["admin", "technical"]
@@ -65,29 +70,17 @@ class patientDetails extends React.Component {
           )
         }
 
-
         {
-          
-        }
-         {
-            api.getPatient(this.props.match.params.uid.toString()).map(item => (
-              <div key={item.uid}>
-                <h1>Details of {item.name}</h1>
-                
-                <h4>ID of User: {item.uid}</h4>
-                <h4>Role of User: {item.role}</h4>
-                <h4>Username: {item.username}</h4>
-                <h4>Password: {item.password}</h4>
-              </div>
-           ))
-          // this.props.patient.map(item => (
-          //   <div key={item.uid}>
-          //     <h1>Details of {item.name}</h1>
-          //     <h4>User ID: {item.uid}</h4>
-          //     <h4>Role: {item.role}</h4>
-          //     <h4>Username: {item.username}</h4>
-          //   </div>
-          // ))
+          api.getPatient(this.props.match.params.uid.toString()).map(item => (
+            <div key={item.uid}>
+              <h1>Details of {item.name}</h1>
+
+              <h4>ID of User: {item.uid}</h4>
+              <h4>Role of User: {item.role}</h4>
+              <h4>Username: {item.username}</h4>
+              <h4>Password: {item.password}</h4>
+            </div>
+          ))
         }
        
         </section>

@@ -7,7 +7,7 @@ class historyDetails extends React.Component {
   
   constructor(props) {
     super(props);
-    let {uid} = this.props.auth;
+    let uid = this.props.auth;
     let history = api.getHistory(uid);
     //console.log(histories)
     props.loadHistory(history);
@@ -32,6 +32,11 @@ class historyDetails extends React.Component {
       {
         to: "/histories",
         text: "Histories List",
+        roles: ["admin", "doctor"]
+      },
+      {
+        to: "/createHistory",
+        text: "Create History",
         roles: ["admin", "doctor"]
       },
       {
@@ -67,18 +72,17 @@ class historyDetails extends React.Component {
             )
           }
 
-          <h1>History Details</h1>
-
           {
           
-            this.props.history.map(item => (
-              <div key={item.numberRegistry} className="divHistories">
-                <h1>Details of History -{item.numberRegistry}-:</h1>
-                <h4>Name of Patient: {item.namePatient}</h4>
-                <h4>DNI of Patient: {item.dniPatient}</h4>
-                <h4>Description: {item.history}</h4>
-              </div>
-            ))
+          api.getHistory(this.props.match.params.uid.toString()).map(item => (
+            <div key={item.numberRegistry}>
+              <h1>Details of History nº {item.numberRegistry}</h1>
+
+              <h4>DNI of Patient: {item.dniPatient}</h4>
+              <h4>Name of Patient: {item.namePatient}</h4>
+              <h4>Description: {item.history}</h4>
+            </div>
+          ))
             
           }
         </section>

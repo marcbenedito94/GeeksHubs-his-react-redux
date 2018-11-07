@@ -19,6 +19,41 @@ class patients extends React.Component {
     if (!this.props.auth) {
       return <Redirect to="/login" />;
     } else {
+
+      const { uid } = this.props.auth;
+
+      const links = [
+        {
+          to: "/patients",
+          text: "Patients List",
+          roles: ["admin", "doctor"]
+        },
+        {
+          to: "/histories",
+          text: "Histories List",
+          roles: ["admin", "doctor"]
+        },
+        {
+          to: "/createHistory",
+          text: "Create History",
+          roles: ["admin", "doctor"]
+        },
+        {
+          to: "/createUser",
+          text: "Create User",
+          roles: ["admin", "technical"]
+        },
+        {
+          to: "/patientDetails/"+ uid ,
+          text: "Patient Details",
+          roles: ["admin", "patient"]
+        },
+        {
+          to: "/historyDetails/" + uid,
+          text: "History Details",
+          roles: ["admin", "patient"]
+        }
+        ];
       
       return (
         <section className="dashboard">
