@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import "./dashboard.css";
+import "../styles.css"
 
 class dashboard extends React.Component {
   logout = () => {
@@ -52,7 +53,9 @@ class dashboard extends React.Component {
             {<button onClick={this.logout}>Logout</button>}
           </h3>
 
-          <h1>Dashboard</h1>          
+          <div class="titles">
+            <h1 className="title">Dashboard</h1>
+          </div>
 
          {
            links.map(

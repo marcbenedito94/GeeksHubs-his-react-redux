@@ -2,7 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Redirect} from "react-router-dom";
 import "../histories/histories.css";
-import "../dashboards/dashboard.css"
+import "../dashboards/dashboard.css";
+import "../styles.css";
 import api from '../services/api';
 
 class histories extends React.Component {
@@ -54,7 +55,9 @@ class histories extends React.Component {
             <button onClick={this.logout}>Logout</button>
           </h3>
 
-          <h1>Create User</h1>
+          <div class="titles">
+            <h1 className="title">Create User</h1>
+          </div>
 
           <form onSubmit={this.handleSubmit}>
           <label>Role:

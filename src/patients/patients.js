@@ -20,7 +20,7 @@ class patients extends React.Component {
       return <Redirect to="/login" />;
     } else {
 
-      const { uid } = this.props.auth;
+      const { role, uid } = this.props.auth;
 
       const links = [
         {
@@ -61,7 +61,19 @@ class patients extends React.Component {
             <button onClick={this.logout}>Logout</button>
         </h3>
 
-        <h1>Patients</h1>
+        {
+          links.map(
+            item => (
+            item.roles.includes(role) 
+            && 
+            <Link to={item.to}>{item.text}</Link>
+            )
+          )
+        }
+
+        <div class="titles">
+          <h1 className="title">Patients</h1>
+        </div>
 
         {
           this.props.patients.map(item => (

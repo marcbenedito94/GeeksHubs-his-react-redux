@@ -2,7 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import "../histories/histories.css";
-import "../dashboards/dashboard.css"
+import "../dashboards/dashboard.css";
+import "../styles.css";
 import api from '../services/api';
 
 class histories extends React.Component {
@@ -90,7 +91,9 @@ class histories extends React.Component {
           )
         }
 
-          <h1>Create History</h1>
+          <div class="titles">
+            <h1 className="title">Create History</h1>
+          </div>
 
           <form onSubmit={this.handleSubmit}>
           {/* <label>uid:

@@ -76,7 +76,9 @@ class historyDetails extends React.Component {
           
           api.getHistory(this.props.match.params.uid.toString()).map(item => (
             <div key={item.numberRegistry}>
-              <h1>Details of History nº {item.numberRegistry}</h1>
+              <div class="titles">
+                <h1 className="title">Details of History nº {item.numberRegistry}</h1>
+              </div>
 
               <h4>DNI of Patient: {item.dniPatient}</h4>
               <h4>Name of Patient: {item.namePatient}</h4>

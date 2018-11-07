@@ -4,6 +4,7 @@ import { Redirect, Link } from "react-router-dom";
 import api from '../services/api';
 import "./histories.css";
 import "../dashboards/dashboard.css";
+import "../styles.css";
 
 class histories extends React.Component {
 
@@ -28,12 +29,17 @@ class histories extends React.Component {
       const links = [
         {
           to: "/patients",
-          text: "Lista Pacientes",
+          text: "Patients List",
           roles: ["admin", "doctor"]
         },
         {
           to: "/histories",
-          text: "Lista Historias",
+          text: "Histories List",
+          roles: ["admin", "doctor"]
+        },
+        {
+          to: "/createHistory",
+          text: "Create History",
           roles: ["admin", "doctor"]
         },
         {
@@ -53,27 +59,6 @@ class histories extends React.Component {
         }
       ];
 
-        // const registries = [
-        //     {
-        //       id: "01",
-        //       patient: "Marc",
-        //       dni: "73656577D",
-        //       history: "Dolor de cabeza"
-        //     },
-        //     {
-        //       id: "02",
-        //       patient: "Marc",
-        //       dni: "73656577D",
-        //       history: "Corte en la pierna"
-        //     },
-        //     {
-        //       id: "03",
-        //       patient: "Joan",
-        //       dni: "73656577F",
-        //       history: "Virus estomacal"
-        //   }
-        // ];
-
       return (
         <section className="dashboard">
         <h3 className="btnLogout">
@@ -90,7 +75,9 @@ class histories extends React.Component {
           )
         }
 
-        <h1>Historias</h1>
+        <div class="titles">
+          <h1 className="title">Histories</h1>
+        </div>
 
         {
           

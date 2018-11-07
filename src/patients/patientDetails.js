@@ -73,7 +73,9 @@ class patientDetails extends React.Component {
         {
           api.getPatient(this.props.match.params.uid.toString()).map(item => (
             <div key={item.uid}>
-              <h1>Details of {item.name}</h1>
+              <div class="titles">
+                <h1 className="title">Details of {item.name}</h1>
+              </div>
 
               <h4>ID of User: {item.uid}</h4>
               <h4>Role of User: {item.role}</h4>
