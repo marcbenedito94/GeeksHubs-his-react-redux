@@ -42,6 +42,24 @@ function reducer( state = initialState, action ) {
 
         return _state
     }
+    case 'LOAD_HISTORY':
+    {
+        let _state = {
+            ...state,
+            history: action.history
+        };
+
+        return _state
+    }
+    case 'LOAD_PATIENT':
+    {
+        let _state = {
+            ...state,
+            patient: action.patient
+        };
+
+        return _state
+    }
 
     default:
         return state;

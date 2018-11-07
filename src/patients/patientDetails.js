@@ -6,8 +6,9 @@ import api from '../services/api';
 class patientDetails extends React.Component {
   constructor(props) {
     super(props);
-    let patients = api.getPatients();
-    props.loadPatients(patients);
+    let uid = this.props.auth;
+    let patient = api.getPatient(uid);
+    props.loadPatient(patient);
   
   }
 
@@ -18,9 +19,7 @@ class patientDetails extends React.Component {
     if (!this.props.auth) {
       return <Redirect to="/login" />;
     } else {
-      const { role, name, uid, username } = this.props.auth;
-
-      const patients = localStorage.getItem('users');
+      const { role, uid } = this.props.auth;
 
       const links = [
       {
@@ -57,14 +56,38 @@ class patientDetails extends React.Component {
         </h3>
 
         {
-          this.props.patients.map(item => (
-            <div key={item.uid}>
-              <h1>Details of {item.name}</h1>
-              <h4>User ID: {item.uid}</h4>
-              <h4>Role: {item.role}</h4>
-              <h4>Username: {item.username}</h4>
-            </div>
-          ))
+          links.map(
+            item => (
+            item.roles.includes(role) 
+            && 
+            <Link to={item.to}>{item.text}</Link>
+            )
+          )
+        }
+
+
+        {
+          
+        }
+         {
+            api.getPatient(this.props.match.params.uid.toString()).map(item => (
+              <div key={item.uid}>
+                <h1>Details of {item.name}</h1>
+                
+                <h4>ID of User: {item.uid}</h4>
+                <h4>Role of User: {item.role}</h4>
+                <h4>Username: {item.username}</h4>
+                <h4>Password: {item.password}</h4>
+              </div>
+           ))
+          // this.props.patient.map(item => (
+          //   <div key={item.uid}>
+          //     <h1>Details of {item.name}</h1>
+          //     <h4>User ID: {item.uid}</h4>
+          //     <h4>Role: {item.role}</h4>
+          //     <h4>Username: {item.username}</h4>
+          //   </div>
+          // ))
         }
        
         </section>
@@ -75,7 +98,7 @@ class patientDetails extends React.Component {
 const mapStateToProps = state => {
   return {
     auth: state.auth,
-    patients: state.patients
+    patient: state.patient
   };
 };
 
@@ -85,10 +108,10 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: "USER_LOGGED_OUT"
       }),
-    loadPatients: (patients) => {
+    loadPatient: (patient) => {
       dispatch({
-        type:'LOAD_PATIENTS',
-        patients: patients,
+        type:'LOAD_PATIENT',
+        patient: patient,
       })
     }
   };

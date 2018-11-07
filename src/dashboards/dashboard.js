@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import "./dashboard.css";
-import api from '../services/api';
 
 class dashboard extends React.Component {
   logout = () => {
@@ -12,7 +11,7 @@ class dashboard extends React.Component {
     if (!this.props.auth) {
       return <Redirect to="/login" />;
     } else {
-      const { role, name, uid } = this.props.auth;
+      const { role, uid } = this.props.auth;
 
       const links = [
         {

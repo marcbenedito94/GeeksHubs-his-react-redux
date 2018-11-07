@@ -10,7 +10,7 @@ class histories extends React.Component {
   constructor(props) {
     super(props);
     let histories = api.getHistories();
-    console.log(histories)
+    //console.log(histories)
     props.loadHistories(histories);
   }
   
@@ -21,7 +21,7 @@ class histories extends React.Component {
     if (!this.props.auth) {
       return <Redirect to="/login" />;
     } else {
-      const { role, name, uid } = this.props.auth;
+      const { role, uid } = this.props.auth;
 
       
 
@@ -95,12 +95,9 @@ class histories extends React.Component {
         {
           
         this.props.histories.map(item => (
-            <div key={item.uid} className="divHistories">
-              <h4>{item.numberRegistry}</h4>
-              <h4>{item.namePatient}</h4>
-              <h4>{item.dniPatient}</h4>
-              <h4>{item.history}</h4>
-              <h4>{item.uid}</h4>
+            <div key={item.numberRegistry}>
+              { <Link to={'/historyDetails/'+item.numberRegistry}>{item.numberRegistry}</Link> }
+              <br/>
             </div>
           ))
           

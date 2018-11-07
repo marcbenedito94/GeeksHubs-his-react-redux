@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect} from "react-router-dom";
 import "../histories/histories.css";
 import "../dashboards/dashboard.css"
 import api from '../services/api';

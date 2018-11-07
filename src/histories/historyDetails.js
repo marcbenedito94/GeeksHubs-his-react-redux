@@ -4,14 +4,24 @@ import { Redirect, Link } from "react-router-dom";
 import api from '../services/api';
 
 class historyDetails extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    let {uid} = this.props.auth;
+    let history = api.getHistory(uid);
+    //console.log(histories)
+    props.loadHistory(history);
+  }
+
   logout = () => {
     this.props.logoutStore();
   };
+
   render() {
     if (!this.props.auth) {
       return <Redirect to="/login" />;
     } else {
-      const { role, name, uid, username} = this.props.auth;
+      const { role, uid} = this.props.auth;
 
       const links = [
       {
@@ -43,13 +53,34 @@ class historyDetails extends React.Component {
 
       return (
         <section className="dashboard">
-            <h3 className="btnLogout">
-                <button onClick={this.logout}>Logout</button>
-            </h3>
+          <h3 className="btnLogout">
+              <button onClick={this.logout}>Logout</button>
+          </h3>
 
-            <h1>Details of {name}</h1>
-            <h4>{}</h4>
-            <h4>{username}</h4>
+          {
+            links.map(
+              item => (
+              item.roles.includes(role) 
+              && 
+              <Link to={item.to}>{item.text}</Link>
+              )
+            )
+          }
+
+          <h1>History Details</h1>
+
+          {
+          
+            this.props.history.map(item => (
+              <div key={item.numberRegistry} className="divHistories">
+                <h1>Details of History -{item.numberRegistry}-:</h1>
+                <h4>Name of Patient: {item.namePatient}</h4>
+                <h4>DNI of Patient: {item.dniPatient}</h4>
+                <h4>Description: {item.history}</h4>
+              </div>
+            ))
+            
+          }
         </section>
       );
     }
@@ -58,7 +89,7 @@ class historyDetails extends React.Component {
 const mapStateToProps = state => {
   return {
     auth: state.auth,
-    patients: state.patients
+    history: state.history
   };
 };
 
@@ -68,10 +99,10 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: "USER_LOGGED_OUT"
       }),
-    loadPatients: (patients) => {
+    loadHistory: (history) => {
       dispatch({
-        type:'LOAD_PATIENTS',
-        patients: patients,
+        type:'LOAD_HISTORY',
+        history: history,
       })
     }
   };

@@ -55,7 +55,11 @@ const api = {
      
     },
     getHistory(id) {
-        return histories.filter(item => item.uid === id)
+        return histories.filter(item => item.numberRegistry === id)
+       
+    },
+    getPatient(idPatient) {
+        return users.filter(item => item.uid === idPatient)
        
     }
 }

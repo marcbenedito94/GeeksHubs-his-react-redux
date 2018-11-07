@@ -1,6 +1,8 @@
-import React from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
+
+import React from "react";
+
 import api from '../services/api';
 
 class patients extends React.Component {

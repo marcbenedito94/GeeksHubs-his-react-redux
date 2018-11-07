@@ -44,7 +44,35 @@ class histories extends React.Component {
     if (!this.props.auth) {
       return <Redirect to="/login" />;
     } else {      
-      const { role, name, uid } = this.props.auth;
+      const { role, uid } = this.props.auth;
+
+      const links = [
+        {
+          to: "/patients",
+          text: "Patients List",
+          roles: ["admin", "doctor"]
+        },
+        {
+          to: "/histories",
+          text: "Histories List",
+          roles: ["admin", "doctor"]
+        },
+        {
+          to: "/createUser",
+          text: "Create User",
+          roles: ["admin", "technical"]
+        },
+        {
+          to: "/patientDetails/"+ uid ,
+          text: "Patient Details",
+          roles: ["admin", "patient"]
+        },
+        {
+          to: "/historyDetails/" + uid,
+          text: "History Details",
+          roles: ["admin", "patient"]
+        }
+      ];
       
       return (
         <section className="dashboard">
@@ -52,12 +80,22 @@ class histories extends React.Component {
             <button onClick={this.logout}>Logout</button>
           </h3>
 
+        {
+          links.map(
+            item => (
+             item.roles.includes(role) 
+             && 
+             <Link to={item.to}>{item.text}</Link>
+            )
+          )
+        }
+
           <h1>Create History</h1>
 
           <form onSubmit={this.handleSubmit}>
-          <label>uid:
+          {/* <label>uid:
           <input type="text" name="uid" value={this.state.uid} onChange={this.handleChange} />
-          </label>
+          </label> */}
           <label>Number of Registry:
           <input type="text" name="numberRegistry" value={this.state.numberRegistry} onChange={this.handleChange} />
           </label>
