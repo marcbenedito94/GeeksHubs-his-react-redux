@@ -1,21 +1,22 @@
-import React, { Component } from "react";
-import "./App.css";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+
+import React, { Component } from "react";
 import Dashboard from "./dashboards/dashboard";
 import Histories from "./histories/histories";
 import HistoryDetails from './histories/historyDetails';
 import Patients from "./patients/patients";
 import PatientDetails from './patients/patientDetails';
 import CreateUser from "./createUser/createUser";
-import CreateHistory from './histories/createHistory'
+import CreateHistory from './histories/createHistory';
 import Login from "./login.jsx";
 import NotFound from "./notFound";
+
+import "./App.css";
 
 import { Provider } from "react-redux";
 import store from './store';
 class App extends Component {
   render() {
-    //const { uid } = this.props.auth;
     return  (
       <Provider store={store}>
         <div className="App">

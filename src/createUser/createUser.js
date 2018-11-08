@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Redirect} from "react-router-dom";
-import "../histories/histories.css";
+import { Redirect } from "react-router-dom";
+
+import api from '../services/api';
+
 import "../dashboards/dashboard.css";
 import "../styles.css";
-import api from '../services/api';
 
 class histories extends React.Component {
   
@@ -24,20 +25,14 @@ class histories extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  getUsers() {
-
-  }    
-
   handleChange(event) {
-    this.setState({[event.target.name]: event.target.value});
-   
+    this.setState({[event.target.name]: event.target.value});   
   }
 
   handleSubmit(event) {
-    console.log('A name was submitted: ' + this.state.role);
     event.preventDefault();
-    let {role, username, name, password, uid} = this.state
-    api.createUser({role, username, name, password, uid})
+    let {role, username, name, password, uid} = this.state;
+    api.createUser({role, username, name, password, uid});
   }
 
   logout = () => {
