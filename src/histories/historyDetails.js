@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
+
 import api from '../services/api';
 
 class historyDetails extends React.Component {
@@ -9,7 +10,6 @@ class historyDetails extends React.Component {
     super(props);
     let uid = this.props.auth;
     let history = api.getHistory(uid);
-    //console.log(histories)
     props.loadHistory(history);
   }
 
@@ -53,8 +53,7 @@ class historyDetails extends React.Component {
         to: "/historyDetails/" + uid,
         text: "History Details",
         roles: ["admin", "patient"]
-      }
-      ];
+      }];
 
       return (
         <section className="dashboard">
@@ -63,8 +62,7 @@ class historyDetails extends React.Component {
           </h3>
 
           {
-            links.map(
-              item => (
+            links.map( item => (
               item.roles.includes(role) 
               && 
               <Link to={item.to}>{item.text}</Link>
@@ -72,26 +70,25 @@ class historyDetails extends React.Component {
             )
           }
 
-          {
-          
-          api.getHistory(this.props.match.params.uid.toString()).map(item => (
-            <div key={item.numberRegistry}>
-              <div class="titles">
-                <h1 className="title">Details of History nº {item.numberRegistry}</h1>
-              </div>
+          {          
+            api.getHistory(this.props.match.params.uid.toString()).map(item => (
+              <div key={item.numberRegistry}>
+                <div class="titles">
+                  <h1 className="title">Details of History nº {item.numberRegistry}</h1>
+                </div>
 
-              <h4>DNI of Patient: {item.dniPatient}</h4>
-              <h4>Name of Patient: {item.namePatient}</h4>
-              <h4>Description: {item.history}</h4>
-            </div>
-          ))
-            
+                <h4>DNI of Patient: {item.dniPatient}</h4>
+                <h4>Name of Patient: {item.namePatient}</h4>
+                <h4>Description: {item.history}</h4>
+              </div>
+            ))            
           }
         </section>
       );
     }
   }
 }
+
 const mapStateToProps = state => {
   return {
     auth: state.auth,

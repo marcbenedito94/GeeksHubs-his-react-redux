@@ -12,20 +12,18 @@ class histories extends React.Component {
   constructor(props) {
     super(props);
     let histories = api.getHistories();
-    //console.log(histories)
     props.loadHistories(histories);
   }
   
   logout = () => {
     this.props.logoutStore();
   };
+
   render() {
     if (!this.props.auth) {
       return <Redirect to="/login" />;
     } else {
       const { role, uid } = this.props.auth;
-
-      
 
       const links = [
         {
@@ -57,8 +55,7 @@ class histories extends React.Component {
           to: "/historyDetails/" + uid,
           text: "History detail",
           roles: ["admin", "patient"]
-        }
-      ];
+        }];
 
       return (
         <section className="dashboard">
@@ -67,36 +64,32 @@ class histories extends React.Component {
         </h3>
 
         {
-          links.map(
-            item => (
+          links.map( item => (
              item.roles.includes(role) 
              && 
              <Link to={item.to}>{item.text}</Link>
-            )
-          )
+            ))
         }
 
         <div class="titles">
           <h1 className="title">Histories</h1>
         </div>
 
-        {
-          
-        this.props.histories.map(item => (
+        {          
+          this.props.histories.map(item => (
             <div key={item.numberRegistry}>
               { <Link to={'/historyDetails/'+item.numberRegistry}>{item.namePatient}</Link> }
               <br/>
             </div>
-          ))
-          
+          ))          
         }
         </section>
       );
     }
   }
 }
-const mapStateToProps = state => {
-  
+
+const mapStateToProps = state => {  
   return {
     auth: state.auth,
     histories: state.histories

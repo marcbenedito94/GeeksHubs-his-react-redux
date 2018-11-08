@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
+
 import api from '../services/api';
 
 class patientDetails extends React.Component {
@@ -8,13 +9,13 @@ class patientDetails extends React.Component {
     super(props);
     let uid = this.props.auth;
     let patient = api.getPatient(uid);
-    props.loadPatient(patient);
-  
+    props.loadPatient(patient);  
   }
 
   logout = () => {
     this.props.logoutStore();
   };
+
   render() {
     if (!this.props.auth) {
       return <Redirect to="/login" />;
@@ -51,8 +52,7 @@ class patientDetails extends React.Component {
         to: "/historyDetails/" + uid,
         text: "History Details",
         roles: ["admin", "patient"]
-      }
-      ];
+      }];
 
       return (
         <section className="dashboard">
@@ -61,8 +61,7 @@ class patientDetails extends React.Component {
         </h3>
 
         {
-          links.map(
-            item => (
+          links.map( item => (
             item.roles.includes(role) 
             && 
             <Link to={item.to}>{item.text}</Link>
@@ -71,7 +70,7 @@ class patientDetails extends React.Component {
         }
 
         {
-          api.getPatient(this.props.match.params.uid.toString()).map(item => (
+          api.getPatient(this.props.match.params.uid.toString()).map( item => (
             <div key={item.uid}>
               <div class="titles">
                 <h1 className="title">Details of {item.name}</h1>

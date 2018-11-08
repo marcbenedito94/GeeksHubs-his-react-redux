@@ -10,11 +10,12 @@ class patients extends React.Component {
   super(props);
     let patients = api.getPatients();
     props.loadPatients(patients);
-
   }
+
   logout = () => {
     this.props.logoutStore();
   };
+
   render() {
     if (!this.props.auth) {
       return <Redirect to="/login" />;
@@ -52,8 +53,7 @@ class patients extends React.Component {
           to: "/historyDetails/" + uid,
           text: "History Details",
           roles: ["admin", "patient"]
-        }
-        ];
+        }];
       
       return (
         <section className="dashboard">
@@ -62,8 +62,7 @@ class patients extends React.Component {
         </h3>
 
         {
-          links.map(
-            item => (
+          links.map( item => (
             item.roles.includes(role) 
             && 
             <Link to={item.to}>{item.text}</Link>
@@ -76,7 +75,7 @@ class patients extends React.Component {
         </div>
 
         {
-          this.props.patients.map(item => (
+          this.props.patients.map( item => (
             <div key={item.uid}>
               { <Link to={'/patientDetails/'+item.uid}>{item.name}</Link> }
             </div>
@@ -88,6 +87,7 @@ class patients extends React.Component {
     }
   }
 }
+
 const mapStateToProps = state => {
   return {
     auth: state.auth,

@@ -25,17 +25,13 @@ class histories extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({[event.target.name]: event.target.value});
-   
+    this.setState({[event.target.name]: event.target.value});   
   }
 
   handleSubmit(event) {
-    console.log('A history was submitted: ' + this.state.dniPatient);
     event.preventDefault();
     let {numberRegistry, namePatient, dniPatient ,history, uid} = this.state
     api.createHistory({numberRegistry, namePatient, dniPatient, history, uid});
-    //api.getHistory();
-    console.log({numberRegistry, namePatient, dniPatient, history});
   }
 
   logout = () => {
@@ -73,8 +69,7 @@ class histories extends React.Component {
           to: "/historyDetails/" + uid,
           text: "History Details",
           roles: ["admin", "patient"]
-        }
-      ];
+        }];
       
       return (
         <section className="dashboard">
@@ -83,13 +78,11 @@ class histories extends React.Component {
           </h3>
 
         {
-          links.map(
-            item => (
+          links.map( item => (
              item.roles.includes(role) 
              && 
              <Link to={item.to}>{item.text}</Link>
-            )
-          )
+            ))
         }
 
           <div class="titles">
@@ -97,9 +90,6 @@ class histories extends React.Component {
           </div>
 
           <form onSubmit={this.handleSubmit}>
-          {/* <label>uid:
-          <input type="text" name="uid" value={this.state.uid} onChange={this.handleChange} />
-          </label> */}
           <label>Number of Registry:
           <input type="text" name="numberRegistry" value={this.state.numberRegistry} onChange={this.handleChange} />
           </label>
@@ -123,6 +113,7 @@ class histories extends React.Component {
     }
   }
 }
+
 const mapStateToProps = state => {
   return {
     auth: state.auth
