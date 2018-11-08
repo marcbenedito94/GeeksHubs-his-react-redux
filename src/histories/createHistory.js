@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
-import "../histories/histories.css";
+
+import api from '../services/api';
+
 import "../dashboards/dashboard.css";
 import "../styles.css";
-import api from '../services/api';
 
 class histories extends React.Component {
   

@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
+
 import "./dashboard.css";
-import "../styles.css"
+import "../styles.css";
 
 class dashboard extends React.Component {
   logout = () => {
@@ -44,8 +45,7 @@ class dashboard extends React.Component {
           to: "/historyDetails/" + uid,
           text: "History Details",
           roles: ["admin", "patient"]
-        }
-        ];
+        }];
 
       return (
         <section className="dashboard">
@@ -58,22 +58,20 @@ class dashboard extends React.Component {
           </div>
 
          {
-           links.map(
-             item => (
-              
+           links.map( item => (              
               item.roles.includes(role) 
               && 
               <div>
                 <Link to={item.to}>{item.text}</Link>
               </div>
-             )
-           )
+             ))
          }
         </section>
       );
     }
   }
 }
+
 const mapStateToProps = state => {
   return {
     auth: state.auth

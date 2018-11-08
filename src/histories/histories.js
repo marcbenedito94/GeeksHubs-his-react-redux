@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
+
 import api from '../services/api';
-import "./histories.css";
+
 import "../dashboards/dashboard.css";
 import "../styles.css";
 

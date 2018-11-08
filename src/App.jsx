@@ -11,8 +11,6 @@ import CreateHistory from './histories/createHistory';
 import Login from "./login.jsx";
 import NotFound from "./notFound";
 
-import "./App.css";
-
 import { Provider } from "react-redux";
 import store from './store';
 class App extends Component {
